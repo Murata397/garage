@@ -1,0 +1,74 @@
+// リセットは _destyle.scss に任せて、ここにはサイト独自の初期設定だけを書く
+
+// テーマカラー（CM_Logsと共通の黒と黄色）
+:root {
+  --color-bg: ;
+  --color-surface: ;
+  --color-surface-2: ;
+  --color-border: ;
+  --color-text: ;
+  --color-sub: ;
+  --color-muted:;
+  --color-main:;
+  --font-ja: "Noto Sans JP", sans-serif;
+  --font-en: "Archivo", "Noto Sans JP", sans-serif;
+  --container: 1120px;
+  --header-height: 67px;
+}
+
+html {
+  font-family: var(--font-ja);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+// 日本語の改行
+// ・言葉の途中で切れないように、文節で改行する（見出しも文章も）
+// ・句読点や小さい「っ」「ゃ」を行の頭に置かない
+// ・長いURLなどは、はみ出さないように途中でも折り返す
+h1, h2, h3, h4, p, dt, dd, li, figcaption, th, td {
+  word-break: auto-phrase;
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
+// 見出しは行の長さをそろえる
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+// 文章は最後の行に1文字だけ残らないようにする
+p, dd, li, figcaption {
+  text-wrap: pretty;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// 見た目は隠して、読み上げソフトには読ませる（WordPressが出すHTMLでも使われている）
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*SP時の画面*/
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+}
